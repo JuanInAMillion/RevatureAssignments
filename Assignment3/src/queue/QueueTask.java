@@ -34,7 +34,7 @@ public class QueueTask {
 		pq1.poll(); //popped out the item with most priority
 		pq1.poll();
 		pq1.poll();
-		pq1.add(25);//added anothe item
+		pq1.add(25);//added another item
 		System.out.println("After Removing the item with most priority: " + pq1);
 		System.out.println(pq1);
 		pq1.poll(); //popped out the item with most priority
