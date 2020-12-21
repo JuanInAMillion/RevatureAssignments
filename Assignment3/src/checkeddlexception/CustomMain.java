@@ -1,4 +1,4 @@
-package driverslicense;
+package checkeddlexception;
 
 public class CustomMain {
 public static void main(String[] args) {
@@ -10,7 +10,7 @@ public static void main(String[] args) {
 				System.out.println("Driver's License Number IS Valid"); //Print out a message validated message
 		}
 		}
-		catch(InvalidException e) {
+		catch(InvalidDLException e) {
 			System.out.println(e.getMessage()); //error message
 		}
 	}

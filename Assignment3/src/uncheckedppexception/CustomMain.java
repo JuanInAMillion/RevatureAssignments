@@ -1,4 +1,4 @@
-package passport;
+package uncheckedppexception;
 
 public class CustomMain {
 	public static void main(String[] args) {
@@ -10,7 +10,7 @@ public class CustomMain {
 				System.out.println("Passport Number IS Valid"); //Print out a message validated message
 			}
 			}
-			catch(InvalidException e) {
+			catch(InvalidPPException e) {
 				System.out.println(e.getMessage()); //error message
 		}
 	}
