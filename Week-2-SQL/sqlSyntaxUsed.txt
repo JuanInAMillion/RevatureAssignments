@@ -1,0 +1,31 @@
+
+
+<—- selects the first_name and last_name columns from the player table in alphabetical order name by last name -—>
+select first_name, last_name 
+from player
+order by last_name asc;
+
+
+<-- selects the team_name and manager columns from the team table -->
+select team_name, manager
+from team;
+
+
+<-- perform an inner join between the player and team table where the team_id of player(foreign key) matches the team_id (primary key of team) of team-->
+SELECT *
+FROM player
+INNER JOIN team
+ON player.team_id = team.team_id;
+
+<-- created a stadium table from the sql editor with columns types and constraints -->
+CREATE TABLE stadium (
+    stadium_id int NOT NULL,
+    stadium_name varchar(20) NOT NULL,
+    address varchar(50) NOT NULL,
+    seating_capacity int NOT NULL,
+    PRIMARY KEY (stadium_id)
+);
+
+<!-- added a column into team table -->
+ALTER TABLE team
+ADD stadium_id int NOT NULL;
