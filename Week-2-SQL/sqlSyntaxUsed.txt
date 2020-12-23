@@ -38,3 +38,23 @@ select p.first_name, p.last_name, t.team_id, t.team_name
 from player p
 join team t
 on p.team_id = t.team_id;
+
+
+
+<-- select all columns from stadium table state equals NY  -->
+select *
+from stadium
+where state = 'NY';
+
+
+<-- select all columns from stadium table where seating_capacity is greater than 45000-->
+select *
+from stadium
+where seating_capacity > 45000;
+
+
+<-- select first_name and last_name that have the same player_id -->
+select first_name, last_name 
+from player
+where team_id = '100'
+group by player_id;
