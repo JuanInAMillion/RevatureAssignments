@@ -1,3 +1,5 @@
+package com.demo;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,7 +23,7 @@ public class Main {
 			System.out.println("Connection Success");
 			//Step 3 - Create Statement
 			Statement statement=connection.createStatement();
-			String sql="select p.player_id, p.first_name, p.last_name, p.position, t.team_name, t.stadium_name from player p join team t on p.team_id = t.team_id";
+			String sql="select p.player_id, p.first_name, p.last_name, p.age, p.position, t.team_name, t.stadium_name from player p join team t on p.team_id = t.team_id";
 			//Step 4 - Execute Query
 			ResultSet resultSet=statement.executeQuery(sql);
 			System.out.println("Query executed");
@@ -30,6 +32,7 @@ public class Main {
 				System.out.print("Id : "+resultSet.getInt("player_id"));
 				System.out.print("  First Name  : "+resultSet.getString("first_name"));
 				System.out.print("  Last Nmae  : "+resultSet.getString("last_name"));
+				System.out.print("  Age  : "+resultSet.getInt("age"));
 				System.out.print("  Position  : "+resultSet.getString("position"));
 				System.out.print("  Team Name  : "+resultSet.getString("team_name"));
 				System.out.print("  Stadium Nmae  : "+resultSet.getString("stadium_name"));
