@@ -1,3 +1,121 @@
+<-- Creating player table -->
+CREATE TABLE public.player (
+	player_id int4 NOT NULL,
+	first_name varchar(20) NOT NULL,
+	last_name varchar(20) NOT NULL,
+	age int4 NOT NULL,
+	"position" varchar(2) NULL,
+	team_id int4 NULL,
+	CONSTRAINT player_pk PRIMARY KEY (player_id)
+);
+
+-- public.player foreign keys
+
+ALTER TABLE public.player ADD CONSTRAINT player_fk FOREIGN KEY (team_id) REFERENCES team(team_id);
+
+<-- Creating team table -->
+REATE TABLE public.team (
+	team_id int4 NOT NULL,
+	team_name varchar(50) NULL,
+	stadium_name varchar(50) NOT NULL,
+	championships int4 NULL,
+	manager varchar(50) NULL,
+	CONSTRAINT team_pk PRIMARY KEY (team_id)
+);
+
+-- public.team foreign keys
+
+ALTER TABLE public.team ADD CONSTRAINT team_fk FOREIGN KEY (stadium_name) REFERENCES stadium(stadium_name);
+
+
+<-- Creating stadium table -->
+CREATE TABLE public.stadium (
+	stadium_name varchar(50) NOT NULL,
+	address varchar(50) NOT NULL,
+	city varchar(50) NOT NULL,
+	state varchar(2) NOT NULL,
+	capacity varchar NOT NULL,
+	CONSTRAINT stadium_pk PRIMARY KEY (stadium_name)
+);
+
+<-- data from player table -->
+INSERT INTO public.player
+(player_id, first_name, last_name, age, "position", team_id)
+VALUES(1, 'Derek', 'Jeter', 46, 'SS', 100);
+INSERT INTO public.player
+(player_id, first_name, last_name, age, "position", team_id)
+VALUES(2, 'Robinson', 'Cano', 38, '2B', 200);
+INSERT INTO public.player
+(player_id, first_name, last_name, age, "position", team_id)
+VALUES(3, 'Alex', 'Rodriguez', 45, '3B', 100);
+INSERT INTO public.player
+(player_id, first_name, last_name, age, "position", team_id)
+VALUES(4, 'Brett ', 'Gardner', 37, 'LF', 100);
+INSERT INTO public.player
+(player_id, first_name, last_name, age, "position", team_id)
+VALUES(9, 'Mookie ', 'Bettes', 28, 'RF', 400);
+INSERT INTO public.player
+(player_id, first_name, last_name, age, "position", team_id)
+VALUES(10, 'CC', 'Sabathia', 40, 'SP', 100);
+INSERT INTO public.player
+(player_id, first_name, last_name, age, "position", team_id)
+VALUES(11, 'Mike ', 'Piazza', 52, 'C', 200);
+INSERT INTO public.player
+(player_id, first_name, last_name, age, "position", team_id)
+VALUES(6, 'Ichiro', 'Susuki', 47, 'RF', 100);
+INSERT INTO public.player
+(player_id, first_name, last_name, age, "position", team_id)
+VALUES(7, 'David', 'Ortiz', 45, 'DH', 300);
+INSERT INTO public.player
+(player_id, first_name, last_name, age, "position", team_id)
+VALUES(5, 'Melky', 'Cabrera', 36, 'CF', 600);
+INSERT INTO public.player
+(player_id, first_name, last_name, age, "position", team_id)
+VALUES(8, 'Pedro', 'Martinez', 49, 'CP', 300);
+
+
+
+<-- data from team table -->
+INSERT INTO public.team
+(team_id, team_name, stadium_name, championships, manager)
+VALUES(100, 'Yankees', 'Yankee Stadium', 27, 'Aaron Boone');
+INSERT INTO public.team
+(team_id, team_name, stadium_name, championships, manager)
+VALUES(200, 'Mets', 'Citi Field', 2, 'Luis Rojas');
+INSERT INTO public.team
+(team_id, team_name, stadium_name, championships, manager)
+VALUES(300, 'Red Sox', 'Fenway Park', 9, 'Ron Roenicke');
+INSERT INTO public.team
+(team_id, team_name, stadium_name, championships, manager)
+VALUES(400, 'Dodgers', 'Dodger Stadium', 7, 'Dave Roberts');
+INSERT INTO public.team
+(team_id, team_name, stadium_name, championships, manager)
+VALUES(500, 'Giants', 'Oracle Park', 3, 'Gabe Kapler');
+INSERT INTO public.team
+(team_id, team_name, stadium_name, championships, manager)
+VALUES(600, 'White Sox', 'Guaranteed Rate Field', 3, 'David Ross');
+
+
+<-- insert data from stadium table -->
+INSERT INTO public.stadium
+(stadium_name, address, city, state, capacity)
+VALUES('Yankee Stadium', '1 E 161 St', 'New York City', 'NY', '54,251');
+INSERT INTO public.stadium
+(stadium_name, address, city, state, capacity)
+VALUES('Citi Field', '41 Seaver Way, Queens', 'New York City', 'NY', '41,922');
+INSERT INTO public.stadium
+(stadium_name, address, city, state, capacity)
+VALUES('Dodger Stadium', '1000 Vin Scully Ave', 'Los Angeles', 'CA', '56,000');
+INSERT INTO public.stadium
+(stadium_name, address, city, state, capacity)
+VALUES('Oracle Park', '24 Willie Mays Plaza', 'San Francisco', 'CA', '41,915');
+INSERT INTO public.stadium
+(stadium_name, address, city, state, capacity)
+VALUES('Guaranteed Rate Field', '333 W 35th St', 'Chicago', 'IL', '40,615');
+INSERT INTO public.stadium
+(stadium_name, address, city, state, capacity)
+VALUES('Fenway Park', '4 Jersey St, Boston', 'Boston', 'MA', '37,731');
+
 
 
 <—- selects the first_name and last_name columns from the player table in alphabetical order name by last name -—>
@@ -18,16 +136,6 @@ INNER JOIN team
 ON player.team_id = team.team_id;
 
 
-<-- created a stadium table from the sql editor with columns types and constraints -->
-CREATE TABLE stadium (
-    stadium_id int NOT NULL,
-    stadium_name varchar(20) NOT NULL,
-    address varchar(50) NOT NULL,
-    seating_capacity int NOT NULL,
-    PRIMARY KEY (stadium_id)
-);
-
-
 <-- added a column into team table -->
 ALTER TABLE team
 ADD stadium_id int NOT NULL;
@@ -38,7 +146,6 @@ select p.first_name, p.last_name, t.team_id, t.team_name
 from player p
 join team t
 on p.team_id = t.team_id;
-
 
 
 <-- select all columns from stadium table state equals NY  -->
