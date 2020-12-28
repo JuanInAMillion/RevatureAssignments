@@ -3,17 +3,18 @@ package com.app.main;
 import java.util.List;
 
 import com.app.dao.PlayerCrudDAO;
+import com.app.dao.PlayerSearchDAO;
 import com.app.dao.impl.PlayerCrudDAOImpl;
+import com.app.dao.impl.PlayerSearchDAOImpl;
 import com.app.exception.BusinessException;
 import com.app.model.Player;
 
 public class PlayerMain {
-
 	public static void main(String[] args) {
 		
 		PlayerCrudDAO dao = new PlayerCrudDAOImpl();
 		
-//Every statement has been commented out individually		
+//Every statement has been commented out individually, the searchdao task are under the crudao task		
 /*
 		//insert a player into the table	
 		Player p = new Player(14, "Randy", "Johnson", 57, "RP", 100);
@@ -73,6 +74,34 @@ public class PlayerMain {
 			System.out.println(e.getMessage());
 		}
 */		
-	}
-	
+		
+		PlayerSearchDAO searchdao = new PlayerSearchDAOImpl();
+		
+		//search by lastname
+		String lastname = "Posada";	
+		try {
+			Player playerByLastname = searchdao.getPlayerByLastname(lastname);
+			System.out.println("Player with the lastname "+lastname+" was found.");
+			System.out.println(playerByLastname.toString());
+			if (playerByLastname!=null) {
+				System.out.println("");
+			}
+		} catch (BusinessException e) {
+			System.out.println(e.getMessage());
+		}
+
+/*		
+ 		//list all players by teamid
+ 		int teamid = 300;	
+		try {
+			List<Player> teamList = searchdao.getPlayersByTeamid(teamid);
+			System.out.println(teamList.size()+" players were found from team "+teamid);
+			for(Player p:teamList) {
+				System.out.println(p.toString());
+			}			
+		} catch (BusinessException e) {
+			System.out.println(e.getMessage());
+		}
+*/		
+	}	
 }
